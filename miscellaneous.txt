@@ -1,3 +1,16 @@
 ---- Get last 2 hours data -----
 
 SELECT * FROM table_name where created >= DATE_SUB(NOW(),INTERVAL 2 HOUR); 
+
+
+----- Subs String -------
+
+select (select result where result like '%"actual_result":"name"%') as vendor,
+case 
+	when (SUBSTRING_INDEX(SUBSTRING_INDEX(result, ',', 1),':',- 1) == '200') then 1
+    else 0
+end
+FROM
+   table_name
+WHERE
+   created_at LIKE '2019-11-%';	
