@@ -14,3 +14,11 @@ FROM
    table_name
 WHERE
    created_at LIKE '2019-11-%';	
+
+
+To check database size
+
+SELECT table_schema AS "Database",
+    -> ROUND(SUM(data_length + index_length) / 1024 / 1024 /1024, 2) AS "Size (GB)"
+    -> FROM information_schema.TABLES
+    -> GROUP BY table_schema;
